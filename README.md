@@ -11,11 +11,11 @@ If you're using Elevenlabs Text To Speech, You might like this script.
    <div style="position: relative;">
         <button onclick="copyToClipboard('code1')" style="position: absolute; right: 0; top: 0;"></button>
         <pre id="code1"><code>pip install colorama</code></pre></pre>
-</div>
-<div style="position: relative;">
+   </div>
+   <div style="position: relative;">
         <button onclick="copyToClipboard('code2')" style="position: absolute; right: 0; top: 0;"></button>
         <pre id="code2"><code>pip install playsound</code></pre></pre>
-</div>
+   </div>
 
 3. Get your API token from elevenlabs: [Token](https://elevenlabs.io/app/settings/api-keys)
 4. Open the main file ```main.py```, replace "YOUR_TOKEN" with your token.
