@@ -6,7 +6,7 @@ If you're using Elevenlabs Text To Speech, You might like this script.
 ## Installation
 
 1. Download and install Python from here: [Python Downloads](https://www.python.org/downloads/)
-2. Install the required `colorama` and `playsound` package:
+2. Install the required `colorama` and `playsound` packages:
 
 <div style="position: relative;">
         <button onclick="copyToClipboard('code1')" style="position: absolute; right: 0; top: 0;"></button>
