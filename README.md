@@ -17,7 +17,7 @@ If you're using Elevenlabs Text To Speech, You might like this script.
         <pre id="code2"><code>pip install playsound</code></pre></pre>
 </div>
 
-## Examples
+## How To Use:
 
 When you run the script:
 ```
