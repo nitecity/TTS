@@ -5,7 +5,7 @@ from playsound import playsound
 from colorama import Fore, Style
 from ids import ids
 
-token: str = "sk_8dd25fb33040a8b59fbba36c9c33d1d8fee02647f5736452"
+token: str = "YOUR_TOKEN"
 path: str ="ids.py"
 mp3: str = f"{uuid.uuid4()}.mp3"
 
