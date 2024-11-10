@@ -17,9 +17,12 @@ If you're using Elevenlabs Text To Speech, You might like this script.
         <pre id="code2"><code>pip install playsound</code></pre></pre>
 </div>
 
+3. Get your API token from elevenlabs: [Token](https://elevenlabs.io/app/settings/api-keys)
+4. Open the main script file, replace "YOUR_TOKEN" with your token.
+
 ## How To Use:
 
-When you run the script:
+When you run the script you'll see this prompt:
 ```
 Characters: ['sarah', 'jessica', 'daniel', 'charlie', 'will', 'lily']
 How To Use:
