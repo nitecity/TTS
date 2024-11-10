@@ -9,7 +9,11 @@ If you're using Elevenlabs Text To Speech, You might like this script.
 2. Install the required `colorama` and `playsound` package:
 - <div style="position: relative;">
         <button onclick="copyToClipboard('code1')" style="position: absolute; right: 0; top: 0;"></button>
-        <pre id="code1"><code>pip install colorama</code></pre><br><code>pip install playsound</code></pre>
+        <pre id="code1"><code>pip install colorama</code></pre></pre>
+</div>
+- <div style="position: relative;">
+        <button onclick="copyToClipboard('code2')" style="position: absolute; right: 0; top: 0;"></button>
+        <pre id="code2"><code>pip install playsound</code></pre></pre>
 </div>
 
 ## Examples
