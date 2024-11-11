@@ -1,4 +1,4 @@
-# TTS
+# Text To Speech
 
 Text To Speech in command line. (elevenlabs.io)<br>
 If you're using Elevenlabs Text To Speech, You might like this script.
