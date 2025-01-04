@@ -2,6 +2,7 @@
 
 Text To Speech in command line. (elevenlabs.io)<br>
 If you're using Elevenlabs Text To Speech, You might like this script.
+You don't have to login to "elevenlabs.io"
 
 ## Installation
 
