@@ -1,37 +1,20 @@
-# Text To Speech
+This document describes a command-line tool for Text-to-Speech (TTS) using ElevenLabs.io. It allows users to convert text to speech without directly logging into the ElevenLabs website.
 
-Text To Speech in command line. (elevenlabs.io)<br>
-If you're using Elevenlabs Text To Speech, You might like this script.
-You don't have to login to "elevenlabs.io"
+### Installation
 
-## Installation
+1.  **Download and install Python**: Get Python from the official downloads page.
+2.  **Install required packages**: Open your command line or terminal and run the following commands:
+    * `pip install colorama`
+    * `pip install playsound`
+3.  **Obtain ElevenLabs API token**: Get your API token from the ElevenLabs API keys settings page.
 
-1. Download and install Python from here: [Python Downloads](https://www.python.org/downloads/)
-2. Install the required `colorama` and `playsound` packages:
+### How to Use
 
-   <div style="position: relative;">
-        <button onclick="copyToClipboard('code1')" style="position: absolute; right: 0; top: 0;"></button>
-        <pre id="code1"><code>pip install colorama</code></pre></pre>
-   </div>
-   <div style="position: relative;">
-        <button onclick="copyToClipboard('code2')" style="position: absolute; right: 0; top: 0;"></button>
-        <pre id="code2"><code>pip install playsound</code></pre></pre>
-   </div>
+When you run the script, you will see a prompt with instructions and available character voices.
 
-3. Get your API token from elevenlabs: [Token](https://elevenlabs.io/app/settings/api-keys)
-4. Open the main file with Notepad ```main.py```, replace "YOUR_TOKEN" with your token.
+**Examples**:
 
-## How To Use:
+* **Text only**: `> Hello World!`
+* **Character and Text**: `> sarah ;; Hello World!`
+* **Add a new voice**: `> add ;; ethan ;; g5CIjZEefAph4nQFvHAz`
 
-When you run the script you'll see this prompt:
-```
-Characters: ['sarah', 'jessica', 'daniel', 'charlie', 'will', 'lily', 'alexandra', 'liam']
-How To Use:
-- Text only: e.g., > Hello World!
-- Character & Text: e.g., > sarah ;; Hello World!
-- Add a new voice: e.g., > add ;; ethan ;; g5CIjZEefAph4nQFvHAz
-- Find voice IDs here: https://elevenlabs.io/app/voice-lab
-> 
-```
-Just follow the instructions.<br>
-EZPZ!
