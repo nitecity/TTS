@@ -1,4 +1,4 @@
-ids: dict = {
+ids: dict[str, str] = {
     "sarah": "EXAVITQu4vr4xnSDxMaL",
     "jessica": "cgSgspJ2msm6clMCkdW9",
     "daniel": "onwK4e9ZLuTAKqWW03F9",
