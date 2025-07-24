@@ -1,53 +1,87 @@
 import requests
-import uuid
+import time
 import random
+import sys
+import os
+from pathlib import Path
 from playsound import playsound
 from colorama import Fore, Style
+from dotenv import load_dotenv
 from ids import ids
 
-token: str = "YOUR_TOKEN"
-path: str ="ids.py"
-mp3: str = f"{uuid.uuid4()}.mp3"
+
+print(Path.cwd())
+if not os.path.exists('.env'):
+    key = input("API KEY:\n> ")
+    with open('.env', 'w') as f:
+        f.write(f'API_KEY="{key}"\n')
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+if not API_KEY:
+    print(f'{Fore.RED}API_KEY not defined! Please assign your API_KEY manualy in ".env" file.\ne.g, API_KEY="sk_8ea11ed75345e8b59fbba36c9c33d1d8fbe82654a3164698"{Style.RESET_ALL}')
+    sys.exit(1)
+ids_path: str = "ids.py"
+mp3_path: str = f"results/{int(time.time() * 1000)}.mp3"
 
 headers: dict = {
   "Accept": "audio/mpeg",
   "Content-Type": "application/json",
-  "xi-api-key": token
+  "xi-api-key": API_KEY
 }
 
 data: dict = {
   "text": "",
-  "model_id": "eleven_monolingual_v1",
+  "model_id": "eleven_multilingual_v2",
   "voice_settings": {
     "stability": 0.5,
     "similarity_boost": 0.5
   }
 }
 
-def post(url: str, data: dict, headers: dict) -> None:
+########################### Text To Speech ###########################
+def generate_speech_and_play(url: str) -> None:
+    try:
+        response = requests.post(url, json=data, headers=headers)
+        if response.status_code == 200:
+            print(f"{Fore.LIGHTGREEN_EX}done!{Style.RESET_ALL}")
+            with open(mp3_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=1024):
+                    if chunk:
+                        f.write(chunk)
+            playsound(mp3_path)
+        else:
+            print(f"{Fore.LIGHTRED_EX}Something went wrong. See the message below:{Style.RESET_ALL}")
+            print(f"{Fore.LIGHTRED_EX}{response.text}{Style.RESET_ALL}")
+    except requests.exceptions.HTTPError as e:
+        print(f'{Fore.RED}Http error: {e}{Style.RESET_ALL}')
+    except Exception as e:
+        print(f'{Fore.RED}An unexpected error occurred: {e}{Style.RESET_ALL}')
 
-    response = requests.post(url, json=data, headers=headers)
-    if response.status_code == 200:
-        print(f"{Fore.LIGHTGREEN_EX}done!{Style.RESET_ALL}")
-        with open(mp3, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=1024):
-                if chunk:
-                    f.write(chunk)
-        playsound(mp3)
-
-    else:
-        print(f"{Fore.LIGHTRED_EX}Something went wrong. See the message below:{Style.RESET_ALL}")
-        print(f"{Fore.LIGHTYELLOW_EX}{response.text}{Style.RESET_ALL}")
-
-def add(new_name: str, new_id: str) -> None:
-    with open(path , 'r') as r:
+############################## Add Voice ##############################
+def add_new_id(new_name: str, new_id: str) -> None:
+    with open(ids_path , 'r') as r:
         lines = r.readlines()
 
-    with open(path , 'w') as w:
+    with open(ids_path , 'w') as f:
         lines[-1] = f'\t"{new_name}": "{new_id}",\n' + '}'
-        w.writelines(lines)
-    print("Succussfuly added the new ID")
+        f.writelines(lines)
+    print("Succussfuly added new voice")
 
+########################## Validate Voice Id ###########################
+def validate_new_id(url) -> bool:
+    try:
+        response = requests.post(url, json=data, headers=headers)
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    except requests.exceptions.HTTPError as e:
+        print(f'{Fore.RED}Http error: {e}{Style.RESET_ALL}')
+    except Exception as e:
+        print(f'{Fore.RED}An unexpected error occurred: {e}{Style.RESET_ALL}')
+
+################################ Main #################################
 def main() -> None:
     url: str = "https://api.elevenlabs.io/v1/text-to-speech/"
     names: list[str] = []
@@ -55,46 +89,50 @@ def main() -> None:
         names.append(name)
     print(f"{Fore.LIGHTMAGENTA_EX}Characters: {Fore.LIGHTBLUE_EX}{names}{Style.RESET_ALL}")
     print(f"{Fore.YELLOW}How To Use:{Style.RESET_ALL}")
-    user_input: str = input(f"{Fore.CYAN}- Just enter some TEXT: e.g, > {Fore.GREEN}Hello World!{Style.RESET_ALL}\n{Fore.CYAN}- Pick one of the names above, two semicolons \";;\" then the TEXT: e.g, > {Fore.GREEN}sarah ;; Hello World!{Style.RESET_ALL}\n{Fore.CYAN}- If you'd like to add more Voices: e.g, > {Fore.GREEN}add ;; ethan ;; g5CIjZEefAph4nQFvHAz{Style.RESET_ALL}\n{Fore.LIGHTMAGENTA_EX}- Ids: https://elevenlabs.io/app/voice-lab{Style.RESET_ALL}\n> ")
+    try:
+        user_input = input(
+            f"{Fore.CYAN}- Text only: e.g., > {Fore.GREEN}Hello World!{Style.RESET_ALL}\n"
+            f"{Fore.CYAN}- Character & Text: e.g., > {Fore.GREEN}sarah ;; Hello World!{Style.RESET_ALL}\n"
+            f"{Fore.CYAN}- Add a new voice: e.g., > {Fore.GREEN}add ;; ethan ;; g5CIjZEefAph4nQFvHAz{Style.RESET_ALL}\n"
+            f"{Fore.LIGHTMAGENTA_EX}- Find voice IDs here: https://elevenlabs.io/app/voice-lab{Style.RESET_ALL}\n> "
+        )
+    except:
+        print(f'{Fore.RED}Operation Canceled!{Style.RESET_ALL}')
+        return
 
-    sp: list = user_input.split(';;')
+    parts: list = user_input.split(';;')
 
-    if len(sp) == 1 and sp[0] != '':
-        data['text'] = sp[0]
-        random_name = random.choice(list(ids.keys()))
-        url = url + ids[random_name]
-        print(f'{Fore.YELLOW}"{random_name}" is going to speak...{Style.RESET_ALL}')
-        post(url, data, headers)
+    if len(parts) == 1 and parts[0]:
+        data['text'] = parts[0]
+        random_voice = random.choice(list(ids.keys()))
+        url = url + ids[random_voice]
+        print(f'{Fore.YELLOW}"{random_voice}" is going to speak...{Style.RESET_ALL}')
+        generate_speech_and_play(url)
 
-    elif len(sp) == 2:
-        first_value = sp[0].lower().strip()
-        second_value = sp[1].strip()
-        if first_value in ids:
-            url = url + ids[first_value]
-            data['text'] = second_value
-            post(url, data, headers)
+    elif len(parts) == 2:
+        character = parts[0].lower().strip()
+        text = parts[1].strip()
+        if character in ids and text:
+            url = url + ids[character]
+            data['text'] = text
+            generate_speech_and_play(url)
         else:
-            print(f"{Fore.YELLOW}The name \"{first_value}\" is not in the library!\nI'm going to use a random name...{Style.RESET_ALL}")
-            random_name = random.choice(list(ids.keys()))
-            url = url + ids[random_name]
-            print(f'{Fore.YELLOW}"{random_name}" is going to speak...{Style.RESET_ALL}')
-            data['text'] = second_value
-            post(url, data, headers)
+            print(f"{Fore.RED}The name \"{character}\" is not in the library or Text is empty{Style.RESET_ALL}")
 
-    elif len(sp) == 3:
-        first_value = sp[0].lower().strip()
-        if first_value == 'add':
+    elif len(parts) == 3:
+        keyword, new_name, new_id = parts[0].lower().strip(), parts[1].lower().strip(), parts[2].strip()
+        if keyword == 'add' and new_name:
             for id in ids.values():
-                if id == sp[2].strip():
+                if id == new_id:
                     print(f"{Fore.YELLOW}The ID is already in the library!{Style.RESET_ALL}")
                     return
-            url = url + sp[2].strip()
-            response = requests.post(url, json=data, headers=headers)
-            if response.status_code != 400:
-                add(sp[1].lower().strip() , sp[2].strip())
+            if validate_new_id(url+new_id):
+                add_new_id(new_name , new_id)
             else:
-                print(f"{Fore.LIGHTRED_EX}Wrong Id!{Style.RESET_ALL}")
+                print(f"{Fore.LIGHTRED_EX}The provided voice ID is invalid.{Style.RESET_ALL}")
         else:
-            print(f"{Fore.LIGHTRED_EX}Syntax Error!{Style.RESET_ALL}")
+            print(f"{Fore.LIGHTRED_EX}Invalid input format.{Style.RESET_ALL}")
 
-main()
+
+if __name__ == '__main__':
+    main()
