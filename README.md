@@ -25,13 +25,13 @@ You don't have to login to "elevenlabs.io"
 
 When you run the script you'll see this prompt:
 ```
-Characters: ['sarah', 'jessica', 'daniel', 'charlie', 'will', 'lily']
+Characters: ['sarah', 'jessica', 'daniel', 'charlie', 'will', 'lily', 'alexandra', 'liam']
 How To Use:
-- Just enter some TEXT: e.g, > Hello World!
-- Pick one of the names above, two semicolons ";;" then the TEXT: e.g, > sarah ;; Hello World!
-- If you'd like to add more Voices: e.g, > add ;; ethan ;; g5CIjZEefAph4nQFvHAz
-- Ids: https://elevenlabs.io/app/voice-lab
->
+- Text only: e.g., > Hello World!
+- Character & Text: e.g., > sarah ;; Hello World!
+- Add a new voice: e.g., > add ;; ethan ;; g5CIjZEefAph4nQFvHAz
+- Find voice IDs here: https://elevenlabs.io/app/voice-lab
+> 
 ```
 Just follow the instructions.<br>
 EZPZ!
