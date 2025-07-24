@@ -15,6 +15,7 @@ try:
             f.write(f'API_KEY="{key}"\n')
 except:
     print(f'{Fore.RED}Operation Canceled{Style.RESET_ALL}')
+    sys.exit(1)
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
