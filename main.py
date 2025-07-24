@@ -3,18 +3,18 @@ import time
 import random
 import sys
 import os
-from pathlib import Path
 from playsound import playsound
 from colorama import Fore, Style
 from dotenv import load_dotenv
 from ids import ids
 
-
-print(Path.cwd())
-if not os.path.exists('.env'):
-    key = input("API KEY:\n> ")
-    with open('.env', 'w') as f:
-        f.write(f'API_KEY="{key}"\n')
+try:
+    if not os.path.exists('.env'):
+        key = input("API KEY:\n> ")
+        with open('.env', 'w') as f:
+            f.write(f'API_KEY="{key}"\n')
+except:
+    print(f'{Fore.RED}Operation Canceled{Style.RESET_ALL}')
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
