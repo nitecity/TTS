@@ -8,15 +8,15 @@ from colorama import Fore, Style
 from dotenv import load_dotenv
 from ids import ids
 
-red = Fore.RED
-green = Fore.GREEN
-cyan = Fore.CYAN
-yellow = Fore.YELLOW
-lgreen = Fore.LIGHTBLACK_EX
-lred = Fore.LIGHTRED_EX
-lmagenta = Fore.LIGHTMAGENTA_EX
-lblue = Fore.LIGHTBLUE_EX
-reset = Style.RESET_ALL
+RED = Fore.RED
+GREEN = Fore.GREEN
+CYAN = Fore.CYAN
+YELLOW = Fore.YELLOW
+LIGHTGREEN = Fore.LIGHTBLACK_EX
+LIGHTRED = Fore.LIGHTRED_EX
+LIGHTMAGENTA = Fore.LIGHTMAGENTA_EX
+LIGHTBLUE = Fore.LIGHTBLUE_EX
+RESET = Style.RESET_ALL
 
 try:
     if not os.path.exists('.env'):
@@ -24,7 +24,7 @@ try:
         with open('.env', 'w') as f:
             f.write(f'API_KEY="{key}"\n')
 except:
-    print(f'{Fore.RED}Operation Canceled{Style.RESET_ALL}')
+    print(f'{RED}Operation Canceled{RESET}')
     sys.exit(1)
 
 load_dotenv()
@@ -77,7 +77,7 @@ def add_new_id(new_name: str, new_id: str) -> None:
     with open(ids_path , 'w') as f:
         lines[-1] = f'\t"{new_name}": "{new_id}",\n' + '}'
         f.writelines(lines)
-    print(f"{green}Succussfuly added new voice{reset}")
+    print(f"{GREEN}Succussfuly added new voice{RESET}")
 
 ########################## Validate Voice Id ###########################
 def validate_new_id(url) -> bool:
