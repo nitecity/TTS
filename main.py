@@ -30,7 +30,7 @@ except:
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 if not API_KEY:
-    print(f'{Fore.RED}API_KEY not defined! Please assign your API_KEY manualy in ".env" file.\ne.g, API_KEY="sk_8ea11ed75345e8b59fbba36c9c33d1d8fbe82654a3164698"{Style.RESET_ALL}')
+    print(f'{RED}API_KEY not defined! Please assign your API_KEY manualy in ".env" file.\ne.g, API_KEY="sk_8ea11ed75345e8b59fbba36c9c33d1d8fbe82654a3164698"{RESET}')
     sys.exit(1)
 ids_path: str = "ids.py"
 mp3_path: str = f"results/{int(time.time() * 1000)}.mp3"
@@ -55,7 +55,7 @@ def generate_speech_and_play(url: str) -> None:
     try:
         response = requests.post(url, json=data, headers=headers)
         if response.status_code == 200:
-            print(f"{Fore.LIGHTGREEN_EX}done!{Style.RESET_ALL}")
+            print(f"{LIGHTGREEN}done!{RESET}")
             with open(mp3_path, 'wb') as f:
                 for chunk in response.iter_content(chunk_size=1024):
                     if chunk:
