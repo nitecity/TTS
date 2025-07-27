@@ -62,8 +62,8 @@ def generate_speech_and_play(url: str) -> None:
                         f.write(chunk)
             playsound(mp3_path)
         else:
-            print(f"{Fore.LIGHTRED_EX}Something went wrong. See the message below:{Style.RESET_ALL}")
-            print(f"{Fore.LIGHTRED_EX}{response.text}{Style.RESET_ALL}")
+            print(f"{LIGHTRED}Something went wrong. See the message below:{RESET}")
+            print(f"{LIGHTRED}{response.text}{RESET}")
     except requests.exceptions.HTTPError as e:
         print(f'{Fore.RED}Http error: {e}{Style.RESET_ALL}')
     except Exception as e:
