@@ -88,7 +88,7 @@ def validate_new_id(url) -> bool:
         else:
             return False
     except requests.exceptions.HTTPError as e:
-        print(f'{Fore.RED}Http error: {e}{Style.RESET_ALL}')
+        print(f'{RED}Http error: {e}{RESET}')
     except Exception as e:
         print(f'{Fore.RED}An unexpected error occurred: {e}{Style.RESET_ALL}')
 
