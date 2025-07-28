@@ -65,9 +65,9 @@ def generate_speech_and_play(url: str) -> None:
             print(f"{LIGHTRED}Something went wrong. See the message below:{RESET}")
             print(f"{LIGHTRED}{response.text}{RESET}")
     except requests.exceptions.HTTPError as e:
-        print(f'{Fore.RED}Http error: {e}{Style.RESET_ALL}')
+        print(f'{RED}Http error: {e}{RESET}')
     except Exception as e:
-        print(f'{Fore.RED}An unexpected error occurred: {e}{Style.RESET_ALL}')
+        print(f'{RED}An unexpected error occurred: {e}{RESET}')
 
 ############################## Add Voice ##############################
 def add_new_id(new_name: str, new_id: str) -> None:
