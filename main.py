@@ -98,7 +98,7 @@ def main() -> None:
     names: list[str] = []
     for name in ids:
         names.append(name)
-    print(f"{Fore.LIGHTMAGENTA_EX}Characters: {Fore.LIGHTBLUE_EX}{names}{Style.RESET_ALL}")
+    print(f"{LIGHTMAGENTA}Characters: {Fore.LIGHTBLUE_EX}{names}{RESET}")
     print(f"{Fore.YELLOW}How To Use:{Style.RESET_ALL}")
     try:
         user_input = input(
