@@ -102,7 +102,7 @@ def main() -> None:
     print(f"{YELLOW}How To Use:{RESET}")
     try:
         user_input = input(
-            f"{CYAN}- Text only: e.g., > {Fore.GREEN}Hello World!{RESET}\n"
+            f"{CYAN}- Text only: e.g., > {GREEN}Hello World!{RESET}\n"
             f"{CYAN}- Character & Text: e.g., > {GREEN}sarah ;; Hello World!{RESET}\n"
             f"{Fore.CYAN}- Add a new voice: e.g., > {Fore.GREEN}add ;; ethan ;; g5CIjZEefAph4nQFvHAz{Style.RESET_ALL}\n"
             f"{Fore.LIGHTMAGENTA_EX}- Find voice IDs here: https://elevenlabs.io/app/voice-lab{Style.RESET_ALL}\n> "
