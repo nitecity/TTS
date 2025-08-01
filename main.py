@@ -105,7 +105,7 @@ def main() -> None:
             f"{CYAN}- Text only: e.g., > {GREEN}Hello World!{RESET}\n"
             f"{CYAN}- Character & Text: e.g., > {GREEN}sarah ;; Hello World!{RESET}\n"
             f"{CYAN}- Add a new voice: e.g., > {GREEN}add ;; ethan ;; g5CIjZEefAph4nQFvHAz{RESET}\n"
-            f"{Fore.LIGHTMAGENTA_EX}- Find voice IDs here: https://elevenlabs.io/app/voice-lab{Style.RESET_ALL}\n> "
+            f"{LIGHTMAGENTA}- Find voice IDs here: https://elevenlabs.io/app/voice-lab{RESET}\n> "
         )
     except:
         print(f'{Fore.RED}Operation Canceled!{Style.RESET_ALL}')
