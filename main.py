@@ -12,7 +12,7 @@ RED = Fore.RED
 GREEN = Fore.GREEN
 CYAN = Fore.CYAN
 YELLOW = Fore.YELLOW
-LIGHTGREEN = Fore.LIGHTBLACK_EX
+LIGHTGREEN = Fore.LIGHTGREEN_EX
 LIGHTRED = Fore.LIGHTRED_EX
 LIGHTMAGENTA = Fore.LIGHTMAGENTA_EX
 LIGHTBLUE = Fore.LIGHTBLUE_EX
@@ -33,7 +33,6 @@ if not API_KEY:
     print(f'{RED}API_KEY not defined! Please assign your API_KEY manualy in ".env" file.\ne.g, API_KEY="sk_8ea11ed75345e8b59fbba36c9c33d1d8fbe82654a3164698"{RESET}')
     sys.exit(1)
 ids_path: str = "ids.py"
-mp3_path: str = f"results/{int(time.time() * 1000)}.mp3"
 
 headers: dict = {
   "Accept": "audio/mpeg",
@@ -51,16 +50,17 @@ data: dict = {
 }
 
 ########################### Text To Speech ###########################
-def generate_speech_and_play(url: str) -> None:
+def generate_speech_and_play(url: str, character: str) -> None:
+    mp3_path: str = f"results/{character}_{int(time.time() * 1000)}.mp3"
     try:
         response = requests.post(url, json=data, headers=headers)
         if response.status_code == 200:
-            print(f"{LIGHTGREEN}done!{RESET}")
             with open(mp3_path, 'wb') as f:
                 for chunk in response.iter_content(chunk_size=1024):
                     if chunk:
                         f.write(chunk)
             playsound(mp3_path)
+            print(f'{LIGHTGREEN}The voice has been saved in "results" directory.{RESET}')
         else:
             print(f"{LIGHTRED}Something went wrong. See the message below:{RESET}")
             print(f"{LIGHTRED}{response.text}{RESET}")
@@ -108,7 +108,7 @@ def main() -> None:
             f"{LIGHTMAGENTA}- Find voice IDs here: https://elevenlabs.io/app/voice-lab{RESET}\n> "
         )
     except:
-        print(f'{Fore.RED}Operation Canceled!{Style.RESET_ALL}')
+        print(f'{RED}Operation Canceled!{RESET}')
         return
 
     parts: list = user_input.split(';;')
@@ -117,8 +117,8 @@ def main() -> None:
         data['text'] = parts[0]
         random_voice = random.choice(list(ids.keys()))
         url = url + ids[random_voice]
-        print(f'{Fore.YELLOW}"{random_voice}" is going to speak...{Style.RESET_ALL}')
-        generate_speech_and_play(url)
+        print(f'{YELLOW}"{random_voice}" is speaking...{RESET}')
+        generate_speech_and_play(url, random_voice)
 
     elif len(parts) == 2:
         character = parts[0].lower().strip()
@@ -126,7 +126,8 @@ def main() -> None:
         if character in ids and text:
             url = url + ids[character]
             data['text'] = text
-            generate_speech_and_play(url)
+            print(f'{Fore.YELLOW}"{character}" is speaking...{Style.RESET_ALL}')
+            generate_speech_and_play(url, character)
         else:
             print(f"{Fore.RED}The name \"{character}\" is not in the library or Text is empty{Style.RESET_ALL}")
 
