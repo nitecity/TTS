@@ -126,10 +126,10 @@ def main() -> None:
         if character in ids and text:
             url = url + ids[character]
             data['text'] = text
-            print(f'{Fore.YELLOW}"{character}" is speaking...{Style.RESET_ALL}')
+            print(f'{YELLOW}"{character}" is speaking...{RESET}')
             generate_speech_and_play(url, character)
         else:
-            print(f"{Fore.RED}The name \"{character}\" is not in the library or Text is empty{Style.RESET_ALL}")
+            print(f"{RED}The name \"{character}\" is not in the library or Text is empty{RESET}")
 
     elif len(parts) == 3:
         keyword, new_name, new_id = parts[0].lower().strip(), parts[1].lower().strip(), parts[2].strip()
