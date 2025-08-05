@@ -136,7 +136,7 @@ def main() -> None:
         if keyword == 'add' and new_name:
             for id in ids.values():
                 if id == new_id:
-                    print(f"{Fore.YELLOW}The ID is already in the library!{Style.RESET_ALL}")
+                    print(f"{YELLOW}The ID is already in the library!{RESET}")
                     return
             if validate_new_id(url+new_id):
                 add_new_id(new_name , new_id)
