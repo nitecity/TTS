@@ -141,7 +141,7 @@ def main() -> None:
             if validate_new_id(url+new_id):
                 add_new_id(new_name , new_id)
             else:
-                print(f"{Fore.LIGHTRED_EX}The provided voice ID is invalid.{Style.RESET_ALL}")
+                print(f"{LIGHTRED}The provided voice ID is invalid.{RESET}")
         else:
             print(f"{Fore.LIGHTRED_EX}Invalid input format.{Style.RESET_ALL}")
 
