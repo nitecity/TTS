@@ -143,7 +143,7 @@ def main() -> None:
             else:
                 print(f"{LIGHTRED}The provided voice ID is invalid.{RESET}")
         else:
-            print(f"{Fore.LIGHTRED_EX}Invalid input format.{Style.RESET_ALL}")
+            print(f"{LIGHTRED}Invalid input format.{RESET}")
 
 
 if __name__ == '__main__':
