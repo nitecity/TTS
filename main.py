@@ -99,6 +99,7 @@ def main() -> None:
     for name in ids:
         names.append(name)
     print(f"{LIGHTMAGENTA}Characters: {LIGHTBLUE}{names}{RESET}")
+    print(f"{LIGHTBLUE}------------------------------------------------------------------------{RESET}")
     print(f"{YELLOW}How To Use:{RESET}")
     try:
         user_input = input(
