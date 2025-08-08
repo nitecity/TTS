@@ -15,7 +15,7 @@ This document describes a simple **command-line tool** that uses [ElevenLabs.io]
    git clone https://github.com/nitecity/TTS.git
    ```
 
-2. **Install Required Packages**
+3. **Install Required Packages**
    Open your terminal and run:
 
    ```bash
@@ -23,7 +23,7 @@ This document describes a simple **command-line tool** that uses [ElevenLabs.io]
    pip install playsound
    ```
 
-3. **Get Your ElevenLabs API Key**
+4. **Get Your ElevenLabs API Key**
    Sign in to ElevenLabs and generate your API token from:
    👉 [API Keys Page](https://elevenlabs.io/app/settings/api-keys)
 
