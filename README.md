@@ -10,6 +10,12 @@ This document describes a simple **command-line tool** that uses [ElevenLabs.io]
    Download and install Python from the official website:
    👉 [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
+2. **Clone The Repository**
+   Cloen the repository in your computer:
+   ```bash
+   git clone https://github.com/nitecity/TTS.git
+   ```
+
 2. **Install Required Packages**
    Open your terminal and run:
 
